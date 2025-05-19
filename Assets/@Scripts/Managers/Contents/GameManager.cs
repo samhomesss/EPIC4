@@ -54,6 +54,7 @@ public class GameManager
     public event Action<bool> OnChangeDiceEvent; // TODO : 현재는 boolean으로 구현해서 다음을 보려 하는 거 이후에는 달라 질 듯?
     public event Action<bool> OnSlotMachineEvent; // SlotMachine 돌아가는 이벤트 
     public event Action<bool> OnSpecialSlotAttackEvent; // SlotMachine 공격 이펙트 
+    public event Action<bool> OnSlotMachineFullEvent; // 모든 슬롯 다 돌아 갈때 이벤트 
     /// <summary>
     /// 주사위 던진거 실행 함수 
     /// </summary>
@@ -72,6 +73,10 @@ public class GameManager
     public void SlotMachineRoll(bool isSlot)
     {
         OnSlotMachineEvent?.Invoke(isSlot);
+    }
+    public void SlotMachineFull(bool fullslot)
+    {
+        OnSlotMachineFullEvent?.Invoke(fullslot);
     }
     public void SpecialSlotAttack(bool isSpecial)
     {

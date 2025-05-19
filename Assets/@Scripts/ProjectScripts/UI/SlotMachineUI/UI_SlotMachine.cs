@@ -65,6 +65,8 @@ public class UI_SlotMachine : UI_Scene
         {
             _isSlot3Active = isRolling;
             _slot3Animation.Play("Roll");
+            //TODO: 여기서 돌리면 됨
+            Managers.Game.SlotMachineFull(true);
             return;
         }
     }
@@ -81,6 +83,7 @@ public class UI_SlotMachine : UI_Scene
             _isSlot3Active = false;
             // TODO: 여기서 해야 하는거 하고 
             Managers.Game.SpecialSlotAttack(true);
+            Managers.Game.SlotMachineFull(false);
             _slotEffect.GetComponent<Canvas>().enabled = true;
             StartCoroutine(SpecialAttackTime());
         }
