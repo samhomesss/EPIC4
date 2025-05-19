@@ -11,7 +11,6 @@ public class Hero : Creature
     #region Variables
     Vector2 _moveDir = Vector2.zero;
     bool _isAttack = false;
-    GameObject _dice;
     GameObject _goldParticle;
     #endregion
 
@@ -27,7 +26,6 @@ public class Hero : Creature
         Speed = 5.0f;
 
         BindObjects(typeof(GameObjects));
-        _dice = GetObject((int)GameObjects.Dice);
         _goldParticle = GetObject((int)GameObjects.GoldParticle);
 
         _goldParticle.SetActive(false);

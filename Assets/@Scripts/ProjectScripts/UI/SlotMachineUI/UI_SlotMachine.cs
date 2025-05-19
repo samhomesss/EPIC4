@@ -10,6 +10,8 @@ public class UI_SlotMachine : UI_Scene
         Slot3Animation,
     }
 
+    UI_SlotMachineEffect _slotEffect;
+
     Animator _slot1Animation;
     Animator _slot2Animation;
     Animator _slot3Animation;
@@ -24,6 +26,7 @@ public class UI_SlotMachine : UI_Scene
             return false;
         BindObjects(typeof(GameObjects));
 
+        _slotEffect = FindAnyObjectByType<UI_SlotMachineEffect>();
         _slot1Animation = GetObject((int)GameObjects.Slot1Animation).GetComponent<Animator>();
         _slot2Animation = GetObject((int)GameObjects.Slot2Animation).GetComponent<Animator>();
         _slot3Animation = GetObject((int)GameObjects.Slot3Animation).GetComponent<Animator>();
@@ -78,6 +81,7 @@ public class UI_SlotMachine : UI_Scene
             _isSlot3Active = false;
             // TODO: 여기서 해야 하는거 하고 
             Managers.Game.SpecialSlotAttack(true);
+            _slotEffect.GetComponent<Canvas>().enabled = true;
             StartCoroutine(SpecialAttackTime());
         }
     }
@@ -85,6 +89,7 @@ public class UI_SlotMachine : UI_Scene
     IEnumerator SpecialAttackTime()
     {
         yield return new WaitForSeconds(2f);
+        _slotEffect.GetComponent<Canvas>().enabled = false;
         Managers.Game.SpecialSlotAttack(false);
     }
 
